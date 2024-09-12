@@ -12,12 +12,12 @@ files = [f for f in os.listdir(path_to_folder) if os.path.isfile(os.path.join(pa
 # Read each image file
 for file in files:
     image = cv2.imread(os.path.join(path_to_folder, file))
-
+    caption='Day'
     # validation by standard error
     if image[0].std(axis=1).std() == image[1].std(axis=1).std() ==image[2].std(axis=1).std():
-        print(f"Image: {file} --- Night")
-        input("Press any key to continue...")
+        caption="Night"
 
-    else:
-        print(f"Image: {file} --- Day")
-        input("Press any key to continue...")
+    # Display the image with a caption
+    cv2.imshow(f"Image: {file} -- {caption}", image)
+    cv2.waitKey(0)  # Wait for a key press to close the image window
+    cv2.destroyAllWindows()  # Close all image windows
